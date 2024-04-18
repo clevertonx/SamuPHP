@@ -1,0 +1,37 @@
+laravel
+php artisan serve
+php artisan make:model Post -m
+php artisan migrate
+php artisan migrate:refresh
+
+
+//livewire
+php artisan make:livewire PostComponent
+
+
+//Samu
+Criar Banco de dados Samu
+
+Criar tabela Atendimento
+php artisan make:model Admin/Sesau/Samu/Atendimento -m
+
+Criar tabela Solicitante
+php artisan make:model Admin/Sesau/Samu/Solicitante -m
+
+Criar tabela Paciente
+php artisan make:model Admin/Sesau/Samu/Paciente -m
+
+Criar tabela Protocolo
+php artisan make:model Admin/Sesau/Samu/Protocolo -m
+
+Criar tabela Ocorrencia
+php artisan make:model Admin/Sesau/Samu/Ocorrencia -m
+
+Criar tabela Pessoa
+php artisan make:model Admin/Sesau/Samu/Pessoa -m
+
+php artisan make:model Admin/Sesau/Samu/TipoParentesco -m
+
+php artisan make:model Admin/Sesau/Samu/TipoFim -m
+
+php artisan make:model Admin/Sesau/Samu/TipoPrazo -m
