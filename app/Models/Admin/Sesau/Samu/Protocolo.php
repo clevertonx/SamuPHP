@@ -10,4 +10,6 @@ class Protocolo extends Model
     use HasFactory;
 
     protected $table = 'samu.protocolos';
+
+    protected $fillable = ['data_solicitacao', 'data_retirada'];
 }

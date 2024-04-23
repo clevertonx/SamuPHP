@@ -1,15 +1,6 @@
-
-
-
-
-
 <div class=" p-4 m-4">
     <livewire:admin.sesau.samu.pessoa-component />
-    <div class="row">
-        <div class="col-auto">
-            <button class="btn btn-primary mb-4" wire:click="create">Adicionar Ficha</button>
-        </div>
-    </div>
+
 
     {{-- @if ($isOpen) --}}
 
@@ -21,11 +12,19 @@
             <div class="row">
 
                 <div class="form-floating mb-4 col-12">
+                    <select wire:model="solicitante" wire:change="carregarDadosSolicitante" class="form-select">
+                        <option value="">Selecione</option>
+                        @foreach($pessoas as $pessoa)
+                        <option value="{{ $pessoa->id }}"> {{ $pessoa->nome }}</option>
+                        @endforeach
+                    </select>
+                    <label for="select">Selecione Solicitante:</label>
+                </div>
+                <div class="form-floating mb-4 col-12">
                     <input type="text" wire:model.prevent="data.nome_solicitante" class="form-control"
                            placeholder="Nome do eixo:">
                     <label for="nome">Nome:</label>
                 </div>
-
                 <div class="form-floating mb-4 col-12">
                     <input type="text" wire:model.prevent="data.endereco" class="form-control"
                            placeholder="endereço:">
@@ -75,8 +74,18 @@
             <div class="row">
 
                 <div class="form-floating mb-4 col-12">
+                    <select wire:model="paciente" wire:change="carregarDadosPaciente" class="form-select">
+                        <option value="">Selecione</option>
+                        @foreach($pessoas as $pessoa)
+                            <option value="{{ $pessoa->id }}"> {{ $pessoa->nome }}</option>
+                        @endforeach
+                    </select>
+                    <label for="select">Selecione Paciente:</label>
+                </div>
+
+                <div class="form-floating mb-4 col-12">
                     <input type="text" wire:model.prevent="data.nome_paciente" class="form-control"
-                           placeholder="Nome do eixo:">
+                           placeholder="Nome do paciente:">
                     <label for="nome">Nome:</label>
                 </div>
 
@@ -210,6 +219,11 @@
                 @endif
             </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-primary mb-4" wire:click="create">Adicionar Ficha</button>
+        </div>
     </div>
 </div>
 

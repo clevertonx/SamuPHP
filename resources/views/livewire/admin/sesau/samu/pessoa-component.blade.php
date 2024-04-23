@@ -1,6 +1,6 @@
 <div>
     <div class="card p-4 m-4 align-items-center">
-        <div class="col-auto ">
+        <div class="col-auto">
             <button class="btn btn-sm btn-primary" style="float: right;" data-bs-toggle="modal"
                     data-bs-target="#pessoaModal">Adicionar Pessoa
             </button>
