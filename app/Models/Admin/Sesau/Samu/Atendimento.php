@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Atendimento extends Model
 {
     use HasFactory;
+
+    protected $table = 'samu.atendimentos';
 }

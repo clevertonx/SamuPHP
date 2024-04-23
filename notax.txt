@@ -35,3 +35,13 @@ php artisan make:model Admin/Sesau/Samu/TipoParentesco -m
 php artisan make:model Admin/Sesau/Samu/TipoFim -m
 
 php artisan make:model Admin/Sesau/Samu/TipoPrazo -m
+
+php artisan make:livewire Admin/Sesau/Samu/TipoComponent
+
+php artisan make:livewire Admin/Sesau/Samu/SamuComponent
+
+php artisan make:livewire Admin/Sesau/Samu/PacienteComponent
+
+php artisan make:livewire Admin/Sesau/Samu/AtendimentoComponent
+
+criar rota /samu/index

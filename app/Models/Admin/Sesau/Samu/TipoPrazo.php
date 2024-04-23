@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TipoPrazo extends Model
 {
     use HasFactory;
+
+    protected $table = 'samu.tipo_prazos';
 }
