@@ -15,6 +15,10 @@ class CreateTipoPrazosTable extends Migration
     {
         Schema::create('samu.tipo_prazos', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('protocolo_id')->nullable();
+            $table->foreign('protocolo_id')->references('id')->on('samu.protocolos')->onUpdate('cascade')->onDelete('cascade');
+
             $table->string('nome')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();

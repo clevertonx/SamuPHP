@@ -19,8 +19,6 @@ class CreateProtocolosTable extends Migration
             $table->unsignedBigInteger('atendimento_id')->nullable();
             $table->foreign('atendimento_id')->references('id')->on('samu.atendimentos')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('tipo_prazo_id')->nullable();
-            $table->foreign('tipo_prazo_id')->references('id')->on('samu.tipo_prazos')->onUpdate('cascade')->onDelete('set null');
 
             $table->date('data_solicitacao')->nullable();
             $table->date('data_retirada')->nullable();

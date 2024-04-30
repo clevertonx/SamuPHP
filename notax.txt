@@ -44,4 +44,10 @@ php artisan make:livewire Admin/Sesau/Samu/PacienteComponent
 
 php artisan make:livewire Admin/Sesau/Samu/AtendimentoComponent
 
+php artisan make:livewire Admin/Sesau/Samu/ProtocoloComponent
+
+php artisan make:livewire Admin/Sesau/Samu/OcorrenciaComponent
+
+php artisan make:migration adicionar_protocolo_id_a_tipo_prazos
+
 criar rota /samu/index

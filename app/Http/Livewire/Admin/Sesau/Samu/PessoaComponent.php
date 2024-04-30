@@ -31,7 +31,7 @@ class PessoaComponent extends Component
             $this->resetInputs();
         }catch(\Exception $e){
             dd($e);
-            session()->flash('error','Something goes wrong while updating category!!');
+            session()->flash('error','Algo deu errado, tente novamente!!');
             $this->cancel();
         }
 

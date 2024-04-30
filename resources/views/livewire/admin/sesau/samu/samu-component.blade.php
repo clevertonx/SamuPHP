@@ -26,7 +26,7 @@
                     <label for="nome">Nome:</label>
                 </div>
                 <div class="form-floating mb-4 col-12">
-                    <input type="text" wire:model.prevent="data.endereco" class="form-control"
+                    <input type="text" wire:model.prevent="data.endereco_solicitante" class="form-control"
                            placeholder="endereço:">
                     <label for="endereco">Endereço:</label>
                 </div>
@@ -113,6 +113,11 @@
                     </select>
                     <label for="select">Para fins de:</label>
                 </div>
+                <div>
+                    @if($tipoSelecionado)
+                        Tipo selecionado: {{ $tipoSelecionado }}
+                    @endif
+                </div>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -135,7 +140,7 @@
             <div class="row">
 
                 <div class="form-floating mb-4 col-12">
-                    <input type="date" wire:model.prevent="data.atendimento" class="form-control" placeholder="Código (CID10)">
+                    <input type="date" wire:model.prevent="data.data_atendimento" class="form-control" placeholder="Código (CID10)">
                     <label for="data_atendimento">Data de atendimento:</label>
                 </div>
 
@@ -145,7 +150,7 @@
                     <label for="horario">Horário:</label>
                 </div>
                 <div class="form-floating mb-4 col-12">
-                    <input type="text" wire:model.prevent="data.endereco_atendimento" class="form-control" placeholder="Código (CID10)">
+                    <input type="text" wire:model.prevent="data.endereco" class="form-control" placeholder="endereco_atendimento">
                     <label for="endereco_atendimento">Endereço:</label>
                 </div>
                 <div class="form-floating mb-4 col-12">
@@ -220,9 +225,9 @@
             </div>
         </form>
     </div>
-    <div class="row">
-        <div class="col text-center">
-            <button class="btn btn-primary mb-4" wire:click="create">Adicionar Ficha</button>
+    <div class="row d-flex justify-content-center">
+        <div class="col-auto">
+            <button class="btn btn-primary mb-4" wire:click.defer="cadastrar">Adicionar Ficha</button>
         </div>
     </div>
 </div>
