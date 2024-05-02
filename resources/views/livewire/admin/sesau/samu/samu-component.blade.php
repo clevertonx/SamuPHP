@@ -1,7 +1,11 @@
 <div class=" p-4 m-4">
+<div class="row d-flex justify-content-center">
+    <livewire:admin.sesau.samu.tipo-component title="Tipo Fins" model="App\Models\Admin\Sesau\Samu\TipoFim" form="admin.sesau.samu.tipo_fim.form" />
+    <livewire:admin.sesau.samu.tipo-component title="Tipo Parentesco" model="App\Models\Admin\Sesau\Samu\TipoParentesco" form="admin.sesau.samu.tipo_parentesco.form"/>
+    <livewire:admin.sesau.samu.tipo-component title="Tipo Prazo" model="App\Models\Admin\Sesau\Samu\TipoPrazo" form="admin.sesau.samu.tipo_prazo.form" />
+
+</div>
     <livewire:admin.sesau.samu.pessoa-component />
-
-
     {{-- @if ($isOpen) --}}
 
     <div class="card p-4 mb-4">
@@ -99,19 +103,22 @@
                     <label for="data_nascimento">Data de nascimento:</label>
                 </div>
                 <div class="form-floating mb-4 col-12">
-                    <input type="text" wire:model.prevent="data.grau_parentesco" class="form-control" placeholder="Grau de parentesco">
-                    <label for="grau_de_parenteco">Grau de parentesco:</label>
+                    <select wire:model.prevent="data.grau_parentesco" class="form-select">
+                        <option value="">Selecione</option>
+                        @foreach($parentescos as $parentesco)
+                            <option value="{{$parentesco->nome}}">{{$parentesco->nome}}</option>
+                        @endforeach
+                    </select>
+                    <label for="parentesco">Grau de Parentesco:</label>
                 </div>
-
                 <div class="form-floating mb-4 col-12">
                     <select wire:model.prevent="data.para_fins_de" class="form-select">
                         <option value="">Selecione</option>
-                        <option value="1">DPVAT</option>
-                        <option value="2">INSS</option>
-                        <option value="3">Judicial</option>
-                        <option value="4">Outros</option>
+                        @foreach($fins as $tipofim)
+                            <option value="{{$tipofim->nome}}">{{$tipofim->nome}}</option>
+                        @endforeach
                     </select>
-                    <label for="select">Para fins de:</label>
+                    <label for="parentesco">Para fins de:</label>
                 </div>
                 <div>
                     @if($tipoSelecionado)
@@ -179,52 +186,7 @@
         </form>
     </div>
 
-    <div class="card p-4 mb-4">
-        <div class="card p-2 mb-4 bg-light">
-            <h5>Protocolo</h5>
-        </div>
-        <form wire:submit.prevent="store">
-            <div class="row">
-
-                <div class="form-floating mb-4 col-10">
-                    <input type="text" wire:model.prevent="data.nome" class="form-control" placeholder="Código (CID10)">
-                    <label for="nome">Nome:</label>
-                </div>
-
-                <div class="form-floating mb-4 col-2">
-                    <input type="text" wire:model.prevent="data.prazo" class="form-control"
-                           placeholder="Prazo:">
-                    <label for="prazo">Prazo:</label>
-                </div>
-                <div class="form-floating mb-4 col-6">
-                    <input type="text" wire:model.prevent="data.solicitacao" class="form-control" placeholder="Código (CID10)">
-                    <label for="solicitacao">Solicitação:</label>
-                </div>
-                <div class="form-floating mb-4 col-6">
-                    <input type="date" wire:model.prevent="data.data_solicitacao" class="form-control" placeholder="Código (CID10)">
-                    <label for="data_solicitacao">Data da solicitação:</label>
-                </div>
-                <div class="form-floating mb-4 col-6">
-                    <input type="text" wire:model.prevent="data.servidor" class="form-control" placeholder="Servidor">
-                    <label for="servidor">Servidor:</label>
-                </div>
-                <div class="form-floating mb-4 col-6">
-                    <input type="date" wire:model.prevent="data.data_retirada" class="form-control" placeholder="Data de retirada:">
-                    <label for="data_retirada">Data de retirada:</label>
-                </div>
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="list-unstyled">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-            </div>
-        </form>
-    </div>
+    <livewire:admin.sesau.samu.protocolo-component />
     <div class="row d-flex justify-content-center">
         <div class="col-auto">
             <button class="btn btn-primary mb-4" wire:click.defer="cadastrar">Adicionar Ficha</button>

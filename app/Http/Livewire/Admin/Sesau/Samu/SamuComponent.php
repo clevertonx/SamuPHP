@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin\Sesau\Samu;
 use App\Models\Admin\Sesau\Samu\Atendimento;
 use App\Models\Admin\Sesau\Samu\Pessoa;
 use App\Models\Admin\Sesau\Samu\Protocolo;
+use App\Models\Admin\Sesau\Samu\TipoFim;
+use App\Models\Admin\Sesau\Samu\TipoParentesco;
 use App\Models\Admin\Sesau\Samu\TipoPrazo;
 use Livewire\Component;
 
@@ -18,7 +20,10 @@ class SamuComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.sesau.samu.samu-component', ['pessoas' => Pessoa::all()]);
+        return view('livewire.admin.sesau.samu.samu-component',
+            ['pessoas' => Pessoa::all(),
+            'parentescos' => TipoParentesco::all(),
+            'fins' => TipoFim::all()]);
     }
 
     public function selecionarTipo($tipo)
@@ -45,19 +50,6 @@ class SamuComponent extends Component
         ]);
         try {
             $atendimento = Atendimento::create($this->data);
-
-            $protocolo = Protocolo::create([
-                'data_solicitacao' => $this->data['data_solicitacao'],
-                'data_retirada' => $this->data['data_retirada']
-            ]);
-
-            $atendimento->protocolo()->save($protocolo);
-
-            $tipoPrazo = TipoPrazo::create([
-                'nome' => $this->data['prazo']
-            ]);
-            $protocolo->tipoPrazos()->save($tipoPrazo);
-
 
             session()->flash('success', 'Atendimento Cadastrado com sucesso!');
             $this->resetInputs();

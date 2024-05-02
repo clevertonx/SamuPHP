@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoParentescosTable extends Migration
+class CreateTipoPrazosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateTipoParentescosTable extends Migration
      */
     public function up()
     {
-        Schema::create('samu.tipo_parentescos', function (Blueprint $table) {
+        Schema::create('samu.tipo_prazos', function (Blueprint $table) {
             $table->id();
+
             $table->string('nome')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
@@ -28,6 +29,6 @@ class CreateTipoParentescosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('samu.tipo_parentescos');
+        Schema::dropIfExists('samu.tipo_prazos');
     }
 }

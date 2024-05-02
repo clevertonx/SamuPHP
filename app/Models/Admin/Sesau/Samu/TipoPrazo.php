@@ -16,8 +16,5 @@ class TipoPrazo extends Model
         'nome', 'status'
     ];
 
-    public function protocolo(): BelongsTo
-    {
-        return $this->belongsTo(Protocolo::class);
-    }
+
 }
