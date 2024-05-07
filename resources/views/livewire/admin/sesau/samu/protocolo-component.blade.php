@@ -9,10 +9,13 @@
                 <input type="text" wire:model.prevent="data.nome" class="form-control" placeholder="Código (CID10)">
                 <label for="nome">Nome:</label>
             </div>
-
             <div class="form-floating mb-4 col-2">
-                <input type="text" wire:model.prevent="data.prazo" class="form-control"
-                       placeholder="Prazo:">
+                <select wire:model.prevent="data.tipo_prazo_id" class="form-select">
+                    <option value="">Selecione</option>
+                    @foreach($prazos as $prazo)
+                        <option value="{{$prazo->id}}">{{$prazo->nome}}</option>
+                    @endforeach
+                </select>
                 <label for="prazo">Prazo:</label>
             </div>
             <div class="form-floating mb-4 col-6">

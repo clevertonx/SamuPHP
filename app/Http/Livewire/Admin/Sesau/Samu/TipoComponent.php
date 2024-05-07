@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class TipoComponent extends Component
 {
-    public $title, $model, $form, $tipoId, $tiposParentesco;
+    public $title, $model, $form, $tipoId;
     public $nome, $status, $tipocomponent_id;
     public $isOpen = false;
     public $data = [];
