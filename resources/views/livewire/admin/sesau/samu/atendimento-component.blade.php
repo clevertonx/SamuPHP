@@ -36,7 +36,7 @@
                                 data-telefone="{{ $pessoa->telefone }}" data-email="{{ $pessoa->email }}"></option>
                     @endforeach
                 </datalist>
-            </div>
+
             <div class="form-floating mb-4 col-12">
                 <input type="text" wire:model.prevent="data.nome_solicitante" class="form-control"
                        placeholder="Nome do eixo:">
@@ -72,7 +72,7 @@
                        placeholder="Código (IBGE)">
                 <label for="email">Email:</label>
             </div>
-
+            </div>
         </form>
     </div>
 

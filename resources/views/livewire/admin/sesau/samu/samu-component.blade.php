@@ -7,6 +7,7 @@
 
     <livewire:admin.sesau.samu.pessoa-component />
     <livewire:admin.sesau.samu.atendimento-component />
+    <livewire:admin.sesau.samu.tabela-atendimento-component />
 
 
 </div>

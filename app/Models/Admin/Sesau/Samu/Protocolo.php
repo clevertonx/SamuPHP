@@ -14,7 +14,7 @@ class Protocolo extends Model
 
     protected $table = 'samu.protocolos';
 
-    protected $fillable = ['tipo_prazo_id', 'data_solicitacao', 'data_retirada'];
+    protected $fillable = ['atendimento_id', 'tipo_prazo_id', 'data_solicitacao', 'data_retirada'];
 
 
 

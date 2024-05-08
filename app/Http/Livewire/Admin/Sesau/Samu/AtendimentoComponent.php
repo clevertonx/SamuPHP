@@ -26,7 +26,7 @@ class AtendimentoComponent extends Component
         return view('livewire.admin.sesau.samu.atendimento-component', [
             'pessoas' => $pessoas,
             'parentescos' => TipoParentesco::all(),
-            'fins' => TipoFim::all()
+            'fins' => TipoFim::all(),
         ]);
     }
 
@@ -37,7 +37,6 @@ class AtendimentoComponent extends Component
 
     public function cadastrar()
     {
-
         $this->validate([
             'data.data_atendimento' => 'required',
             'data.horario' => 'required',
@@ -45,12 +44,14 @@ class AtendimentoComponent extends Component
             'data.fato_acontecido' => 'required',
             'data.transportado_para' => 'required|numeric',
             'data.observacoes' => 'required',
-
         ]);
+
         try {
             $atendimento = Atendimento::create($this->data);
+            $atendimentoId = $atendimento->id;
 
             session()->flash('success', 'Atendimento Cadastrado com sucesso!');
+            $this->emit('adicionarProtocolo', $atendimentoId);
             $this->resetInputs();
         } catch (\Exception $e) {
             dd($e);
