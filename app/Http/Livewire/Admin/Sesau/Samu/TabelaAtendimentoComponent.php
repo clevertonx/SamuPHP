@@ -8,14 +8,20 @@ use Livewire\Component;
 class TabelaAtendimentoComponent extends Component
 {
 
-    public $atendimentos;
     public $atendimento_id, $nome_solicitante, $nome_paciente, $data_atendimento, $data_solicitacao;
 
-    public $view_atendimento_id, $view_solicitante_nome, $view_paciente_nome, $view_data_atendimento, $view_data_solicitacao;
+    /**
+     * @var string
+     */
+    public $atendimento_delete_id;
+    /**
+     * @var string
+     */
+    protected $listeners = ['atualizarTabela'];
 
-    public function mount()
+    public function atualizarTabela()
     {
-        $this->atendimentos = Atendimento::with('protocolo', 'solicitante', 'paciente')->get();
+        $this->render();
     }
 
     public function viewAtendimentoInfo($id)
@@ -46,24 +52,17 @@ class TabelaAtendimentoComponent extends Component
         ]);
     }
 
-    public function updated($fields)
-    {
-        $this->validateOnly($fields, [
-            'atendimento_id' => 'required|unique:atendimentos',
-            'nome' => 'required',
-            'email' => 'required|email',
-            'telefone' => 'required|numeric']);
-    }
+
 
 
 
     public function resetInputs()
     {
-        $this->estudante_id = '';
-        $this->nome = '';
-        $this->email = '';
-        $this->telefone = '';
-        $this->estudante_edit_id = '';
+        $this->atendimento_id = '';
+        $this->solicitante_nome = '';
+        $this->paciente_nome = '';
+        $this->data_atendimento = '';
+        $this->data_solicitacao = '';
     }
 
 //    public function edit($id)
@@ -101,60 +100,54 @@ class TabelaAtendimentoComponent extends Component
 //
 //        $this->dispatchBrowserEvent('close-modal');
 //    }
-//
-//    public function deleteConfirmation($id)
-//    {
-//
-//
-//        $this->estudante_delete_id = $id;
-//
-//        $this->dispatchBrowserEvent('show-delete-estudante-modal');
-//
-//    }
-//
-//    public function deleteEstudante()
-//    {
-//        $estudante = Estudantes::where('id', $this->estudante_delete_id)->first();
-//        $estudante->delete();
-//
-//        session()->flash('message', 'Estudante Excluído com sucesso!');
-//
-//        $this->dispatchBrowserEvent('close-modal');
-//
-//        $this->estudante_delete_id = '';
-//    }
+    public function deleteAtendimento($atendimentoId)
+    {
+        $atendimento = Atendimento::find($atendimentoId);
 
-//    public function viewEstudanteInfo($id)
-//    {
-//        $estudante = Estudantes::where('id', $id)->first();
-//
-//        $this->view_estudante_id = $estudante->id;
-//        $this->view_estudante_nome = $estudante->nome;
-//        $this->view_estudante_email = $estudante->email;
-//        $this->view_estudante_telefone = $estudante->telefone;
-//
-//        $this->dispatchBrowserEvent('show-view-estudante-modal');
-//    }
+        if($atendimento) {
+            $atendimento->delete();
 
-//    function closeViewEstudanteModal()
-//    {
-//        $this->view_etudante_id = '';
-//        $this->view_estudante_nome = '';
-//        $this->view_estudante_email = '';
-//        $this->view_estudante_telefone = '';
-//    }
-//
-//    public function cancel()
-//    {
-//        $this->estudante_delete_id = '';
-//    }
+            if($atendimento->protocolo) {
+                $atendimento->protocolo->delete();
+            }
+
+            session()->flash('message', 'Atendimento excluído com sucesso!');
+        } else {
+            session()->flash('message', 'Falha ao excluir o atendimento. Atendimento não encontrado.');
+        }
+        $this->render();
+        $this->emit('closeModal');
+    }
+    public function updated($fields)
+    {
+        $this->validateOnly($fields, [
+            'atendimento_id' => 'required|unique:atendimentos',
+            'solicitante_nome' => 'required',
+            'paciente_nome' => 'required',
+            'data_atendimento' => 'required',
+            'data_solicitacao' => 'required'
+        ]);
+
+        $this->render();
+    }
+
+    public function confirmDeleteAtendimento($atendimentoId)
+    {
+        $this->atendimento_delete_id = $atendimentoId;
+        $this->dispatchBrowserEvent('confirmDeleteAtendimento', $atendimentoId);
+    }
+
+
+    public function cancel()
+    {
+        $this->atendimento_delete_id = '';
+    }
 
 
     public function render()
     {
-        $atendimentos = Atendimento::all();
 
-        return view('livewire.admin.sesau.samu.tabela-atendimento-component', ['atendimentos' => $atendimentos])
+        return view('livewire.admin.sesau.samu.tabela-atendimento-component', ['atendimentos' => Atendimento::with('protocolo', 'solicitante', 'paciente')->get()])
             ->layout('livewire.layouts.base');
     }
 }

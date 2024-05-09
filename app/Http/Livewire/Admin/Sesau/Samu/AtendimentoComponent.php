@@ -22,7 +22,8 @@ class AtendimentoComponent extends Component
 
     public function render()
     {
-        $pessoas = Pessoa::where('nome', 'like', '%' )->get();
+        $pessoas = Pessoa::get();
+
         return view('livewire.admin.sesau.samu.atendimento-component', [
             'pessoas' => $pessoas,
             'parentescos' => TipoParentesco::all(),
