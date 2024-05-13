@@ -8,6 +8,7 @@ use App\Models\Admin\Sesau\Samu\Protocolo;
 use App\Models\Admin\Sesau\Samu\TipoFim;
 use App\Models\Admin\Sesau\Samu\TipoParentesco;
 use App\Models\Admin\Sesau\Samu\TipoPrazo;
+use App\Models\Dant\Eixo;
 use Livewire\Component;
 
 class AtendimentoComponent extends Component
@@ -17,6 +18,8 @@ class AtendimentoComponent extends Component
     public $paciente;
     public $data = [];
     public $tipoSelecionado;
+
+    protected $listeners = ['postAdded'];
 
 
 
@@ -36,7 +39,7 @@ class AtendimentoComponent extends Component
         $this->tipoSelecionado = $tipo;
     }
 
-    public function cadastrar()
+    public function store()
     {
         $this->validate([
             'data.data_atendimento' => 'required',
@@ -48,23 +51,35 @@ class AtendimentoComponent extends Component
         ]);
 
         try {
-            $atendimento = Atendimento::create($this->data);
+            if (isset($this->data['id'])) {
+                $atendimento = Atendimento::findOrFail($this->data['id']);
+                $atendimento->update($this->data);
+            } else {
+                $atendimento = Atendimento::create($this->data);
+            }
+
             $atendimentoId = $atendimento->id;
 
-            session()->flash('success', 'Atendimento Cadastrado com sucesso!');
+            session()->flash('message', 'Atendimento cadastrado/atualizado com sucesso!');
             $this->emit('adicionarProtocolo', $atendimentoId);
             $this->resetInputs();
         } catch (\Exception $e) {
             dd($e);
-            session()->flash('error', 'Ocorreu um erro ao cadastrar o atendimento.');
+            session()->flash('message', 'Falha ao excluir o atendimento. Atendimento não encontrado.');
             $this->cancel();
         }
+
     }
 
     public function resetInputs()
     {
         $this->data = [];
 
+    }
+
+    public function postAdded($atendimento)
+    {
+        $this->data = $atendimento;
     }
 
     public function carregarDadosSolicitante()

@@ -150,7 +150,7 @@
         <div class="card p-2 mb-4 bg-light">
             <h5>Atendimento</h5>
         </div>
-        <form wire:submit.prevent="store">
+        <form wire:submit.prevent="store" >
             <div class="row">
 
                 <div class="form-floating mb-4 col-6">
@@ -185,7 +185,11 @@
                     <label for="observacoes">Observações:</label>
 
                 </div>
-
+                <div class="row d-flex justify-content-center">
+                    <div class="col-auto">
+                        <button class="btn btn-primary mb-4">Atualizar atendimento</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -193,9 +197,12 @@
     <livewire:admin.sesau.samu.protocolo-component/>
     <div class="row d-flex justify-content-center">
         <div class="col-auto">
-            <button class="btn btn-primary mb-4" wire:click.defer="cadastrar">Adicionar Ficha</button>
+            <button class="btn btn-primary mb-4" wire:click.defer="store">Adicionar Ficha</button>
         </div>
     </div>
+    @if (session()->has('message'))
+        <div class="alert alert-success text-center">{{ session('message') }}</div>
+    @endif
 </div>
 
 <script>

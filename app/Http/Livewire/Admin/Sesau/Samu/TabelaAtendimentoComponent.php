@@ -52,10 +52,6 @@ class TabelaAtendimentoComponent extends Component
         ]);
     }
 
-
-
-
-
     public function resetInputs()
     {
         $this->atendimento_id = '';
@@ -65,41 +61,7 @@ class TabelaAtendimentoComponent extends Component
         $this->data_solicitacao = '';
     }
 
-//    public function edit($id)
-//    {
-//        $estudante = Estudantes::where('id', $id)->first();
-//
-//        $this->estudante_edit_id = $estudante->id;
-//        $this->estudante_id = $estudante->estudante_id;
-//        $this->nome = $estudante->nome;
-//        $this->email = $estudante->email;
-//        $this->telefone = $estudante->telefone;
-//
-//
-//        $this->dispatchBrowserEvent('show-edit-estudante-modal');
-//    }
-//
-//    public function editEstudantedata()
-//    {
-//        $this->validate([
-//            'nome' => 'required',
-//            'email' => 'required|email',
-//            'telefone' => 'required|numeric',
-//        ]);
-//
-//        $estudante = Estudantes::where('id', $this->estudante_edit_id)->first();
-//
-//        $estudante->estudante_id = $this->estudante_id;
-//        $estudante->nome = $this->nome;
-//        $estudante->email = $this->email;
-//        $estudante->telefone = $this->telefone;
-//
-//        $estudante->update();
-//
-//        session()->flash('message', 'Estudante Alterado com sucesso!');
-//
-//        $this->dispatchBrowserEvent('close-modal');
-//    }
+
     public function deleteAtendimento($atendimentoId)
     {
         $atendimento = Atendimento::find($atendimentoId);
