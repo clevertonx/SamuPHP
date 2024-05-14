@@ -12,4 +12,9 @@ class Pessoa extends Model
     protected $table = 'samu.pessoas';
 
     protected $fillable = ['nome', 'endereco', 'bairro', 'cpf', 'telefone', 'rg', 'email', 'data_nascimento', 'user_id', 'status'];
+
+    public function setNomeAttribute($value)
+    {
+        $this->attributes['nome'] = strtoupper($value);
+    }
 }

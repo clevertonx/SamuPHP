@@ -4,9 +4,15 @@ namespace App\Http\Livewire\Admin\Sesau\Samu;
 
 use App\Models\Admin\Sesau\Samu\Atendimento;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TabelaAtendimentoComponent extends Component
 {
+
+    use WithPagination;
+    public $search = '';
+
+    protected $paginationTheme = 'bootstrap';
 
     public $atendimento_id, $nome_solicitante, $nome_paciente, $data_atendimento, $data_solicitacao;
 
@@ -41,16 +47,6 @@ class TabelaAtendimentoComponent extends Component
         $this->dispatchBrowserEvent('show-view-estudante-modal');
     }
 
-    public function closeViewEstudanteModal()
-    {
-        $this->reset([
-            'view_atendimento_id',
-            'view_solicitante_nome',
-            'view_paciente_nome',
-            'view_data_atendimento',
-            'view_data_solicitacao'
-        ]);
-    }
 
     public function resetInputs()
     {
@@ -84,8 +80,6 @@ class TabelaAtendimentoComponent extends Component
     {
         $this->validateOnly($fields, [
             'atendimento_id' => 'required|unique:atendimentos',
-            'solicitante_nome' => 'required',
-            'paciente_nome' => 'required',
             'data_atendimento' => 'required',
             'data_solicitacao' => 'required'
         ]);
@@ -108,8 +102,17 @@ class TabelaAtendimentoComponent extends Component
 
     public function render()
     {
-
-        return view('livewire.admin.sesau.samu.tabela-atendimento-component', ['atendimentos' => Atendimento::with('protocolo', 'solicitante', 'paciente')->get()])
-            ->layout('livewire.layouts.base');
+        return view('livewire.admin.sesau.samu.tabela-atendimento-component', [
+            'atendimentos' => Atendimento::with('protocolo', 'solicitante', 'paciente')
+                ->where(function ($query) {
+                    $query->whereHas('solicitante', function ($subQuery) {
+                        $subQuery->whereRaw('LOWER(nome) LIKE ?', ['%' . strtolower($this->search) . '%']);
+                    })
+                        ->orWhereHas('paciente', function ($subQuery) {
+                            $subQuery->whereRaw('LOWER(nome) LIKE ?', ['%' . strtolower($this->search) . '%']);
+                        });
+                })
+                ->paginate(10)
+        ])->layout('livewire.layouts.base');
     }
 }

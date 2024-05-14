@@ -38,6 +38,7 @@ class PessoaComponent extends Component
 
     }
 
+
     public function resetInputs()
     {
         $this->data = [];

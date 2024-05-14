@@ -6,7 +6,11 @@
                     <div class="card-header justify-content-between">
                         <h5 style="float: left;"><strong>Todos atendimentos</strong></h5>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Buscar" wire:model.debounce.300ms="search">
+                        </div>
+                    </div>
                     <div class="card-body">
                         @if (session()->has('message'))
                             <div class="alert alert-success text-center">{{ session('message') }}</div>
@@ -25,12 +29,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if( $atendimentos->count() > 0 )
-                                @foreach( $atendimentos as $atendimento )
+                            @if($atendimentos->count() > 0)
+                                @foreach($atendimentos as $atendimento)
                                     <tr>
                                         <td>{{ $atendimento->id }}</td>
-                                        <td>{{ $atendimento->paciente->nome }}</td>
                                         <td>{{ $atendimento->solicitante->nome }}</td>
+                                        <td>{{ $atendimento->paciente->nome }}</td>
                                         <td>{{ $atendimento->data_atendimento }}</td>
                                         <td>
                                             @if($atendimento->protocolo)
@@ -40,23 +44,19 @@
                                             @endif
                                         </td>
                                         <td style="text-align: center;">
-                                            <button class="btn btn-sm btn-primary" wire:click="$emit('postAdded', {{ $atendimento }})"
-                                            >Editar
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteAtendimentoModal">Excluir
-                                            </button>
+                                            <button class="btn btn-sm btn-primary" wire:click="$emit('postAdded', {{ $atendimento }})">Editar</button>
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAtendimentoModal">Excluir</button>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4" style="text-align: center;"><small>Nenhum atendimento
-                                            encontrado</small></td>
+                                    <td colspan="7" style="text-align: center;"><small>Nenhum atendimento encontrado</small></td>
                                 </tr>
                             @endif
                             </tbody>
                         </table>
+                        {{ $atendimentos->links() }}
                     </div>
                 </div>
             </div>
