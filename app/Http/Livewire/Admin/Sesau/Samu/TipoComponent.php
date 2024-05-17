@@ -61,6 +61,9 @@ class TipoComponent extends Component
     }
 
 
+
+
+
     public function render()
     {
 

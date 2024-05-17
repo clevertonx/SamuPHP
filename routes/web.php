@@ -29,3 +29,17 @@ Route::get('/posts', function () {
 Route::get('/samu', function () {
     return view('admin.sesau.samu.samu.index');
 });
+
+Route::get('/samu/adicionar', function () {
+    return view('admin.sesau.samu.samu.adicionar');
+});
+
+Route::get('/clear-cache', function () {
+    artisan::call('config:cache');
+    artisan::call('cache:clear');
+    artisan::call('config:clear');
+    artisan::call('view:clear');
+    artisan::call('route:clear');
+    return "Cache is cleared";
+})->name('clear-cache');
+

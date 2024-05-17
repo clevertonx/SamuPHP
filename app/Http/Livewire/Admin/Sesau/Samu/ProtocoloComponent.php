@@ -26,7 +26,7 @@ class ProtocoloComponent extends Component
 
     public function criar()
     {
-        $this->validate(); // Usa as regras definidas no método rules()
+        $this->validate();
 
         try {
             Protocolo::create($this->data);

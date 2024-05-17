@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header justify-content-between">
+                    <div class="card-header d-flex justify-content-center">
                         <h5 style="float: left;"><strong>Todos atendimentos</strong></h5>
                     </div>
-                    <div class="row">
+                    <div class="row d-flex justify-content-center m-2">
                         <div class="col-md-6">
                             <input type="text" class="form-control" placeholder="Buscar" wire:model.debounce.300ms="search">
                         </div>

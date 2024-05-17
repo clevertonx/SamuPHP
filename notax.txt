@@ -53,3 +53,7 @@ php artisan make:migration adicionar_protocolo_id_a_tipo_prazos
 criar rota /samu/index
 
 php artisan make:livewire Admin/Sesau/Samu/TabelaAtendimentoComponent
+
+php artisan make:table Admin/Sesau/Samu/AtendimentoTableComponent
+
+php artisan make:livewire Admin/Sesau/Samu/AdicionarTipoComponent

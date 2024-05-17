@@ -1,13 +1,25 @@
 <div class=" p-4 m-4">
-<div class="row d-flex justify-content-center">
-    <livewire:admin.sesau.samu.tipo-component title="Tipo Fins" model="App\Models\Admin\Sesau\Samu\TipoFim" form="admin.sesau.samu.tipo_fim.form" />
-    <livewire:admin.sesau.samu.tipo-component title="Tipo Parentesco" model="App\Models\Admin\Sesau\Samu\TipoParentesco" form="admin.sesau.samu.tipo_parentesco.form"/>
-    <livewire:admin.sesau.samu.tipo-component title="Tipo Prazo" model="App\Models\Admin\Sesau\Samu\TipoPrazo" form="admin.sesau.samu.tipo_prazo.form" />
-</div>
+    <div class="card p-4 mb-4">
+        <div class="col-lg-2 mb-4">
+            <div class="card bg-info text-black">
+                <div class="card-body">
+                    <i class="fa-solid fa-pen-to-square icon"></i>
 
-    <livewire:admin.sesau.samu.pessoa-component />
-    <livewire:admin.sesau.samu.atendimento-component />
-    <livewire:admin.sesau.samu.tabela-atendimento-component />
+                    <h5 class="card-title">Tipos</h5>
+                    <p class="card-text">Adição de tipo fins, parentesco e prazo</p>
+                    <a href="/samu/adicionar" class="btn btn-dark">Adicionar Tipos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <livewire:admin.sesau.samu.pessoa-component/>
+    <livewire:admin.sesau.samu.atendimento-component/>
+    {{--    <livewire:admin.sesau.samu.tabela-atendimento-component />--}}
+    <livewire:admin.sesau.samu.atendimento-table-component/>
 
 
 </div>
