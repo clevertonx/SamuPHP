@@ -1,6 +1,6 @@
 <form wire:submit.prevent="{{ $tipoId ? 'update' : 'store' }}">
     <div class="row">
-        <div class="form-floating my-4 col-6">
+        <div class="form-floating my-4 col-12">
             <input type="text" wire:model="data.nome" class="form-control"
                    placeholder="tipo do indicador:">
             <label for="nome">Nome:</label>

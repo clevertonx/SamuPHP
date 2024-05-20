@@ -22,6 +22,7 @@
     <livewire:admin.sesau.samu.atendimento-table-component/>
 
 
+
 </div>
 
 

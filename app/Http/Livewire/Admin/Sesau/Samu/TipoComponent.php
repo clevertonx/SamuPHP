@@ -8,10 +8,12 @@ use Livewire\Component;
 
 class TipoComponent extends Component
 {
-    public $title, $model, $form, $tipoId;
+    public $title, $model, $form, $tipoId, $modelId, $modelEmitId;
     public $nome, $status, $tipocomponent_id;
     public $isOpen = false;
     public $data = [];
+    public $openForm = false;
+    protected $listeners = ['openFormTable'];
 
     public function mount($title, $model)
     {
@@ -21,9 +23,7 @@ class TipoComponent extends Component
 
     private function resetInputFields()
     {
-        $this->tipocomponent_id = null;
-        $this->nome = '';
-        $this->status = true;
+        $this->data = [];
     }
 
 
@@ -42,12 +42,20 @@ class TipoComponent extends Component
 
         try {
             $this->model::Create($this->data);
-
+            $this->resetInputFields();
 
         } catch (\Throwable $th) {
             session()->flash('message',
                 'Não foi possível cadastrar/atualizar informação.');
         }
+    }
+
+
+    public function openFormTable( $modelId )
+    {
+        $this->modelEmitId = $modelId;
+        $this->openForm = !$this->openForm;
+
     }
 
     public function openModal()
@@ -58,10 +66,8 @@ class TipoComponent extends Component
     public function closeModal()
     {
         $this->isOpen = false;
+        $this->openForm = !$this->openForm;
     }
-
-
-
 
 
     public function render()

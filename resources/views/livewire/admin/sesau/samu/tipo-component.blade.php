@@ -4,15 +4,15 @@
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
 
-        <div class="row">
-            <div class="col-auto">
-                <button class="btn btn-primary mb-4" wire:click="create">Adicionar {{$title}}</button>
+
+        <h3>{{ $title }}</h3>
+        @if ($openForm && $modelId == $modelEmitId)
+            <div class="card-header">
+                @include($form)
             </div>
-        </div>
-
-
-        <div class="card-header">
-            @include($form)
+        @endif
+        <div class="mt-3">
+            <livewire:admin.sesau.samu.tipo-fim-table-component key="{{ Str::random(5) }}" title="{{$title}}" model="{{$model}}" modelId="{{ $modelId }}"/>
         </div>
 
     </div>

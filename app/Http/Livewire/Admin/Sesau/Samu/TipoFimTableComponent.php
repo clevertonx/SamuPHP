@@ -3,45 +3,48 @@
 namespace App\Http\Livewire\Admin\Sesau\Samu;
 
 use App\Model;
-use App\Models\Admin\Sesau\Samu\Atendimento;
+use App\Models\Admin\Sesau\Samu\TipoFim;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
-class AtendimentoTableComponent extends TableComponent
+class TipoFimTableComponent extends TableComponent
 {
+    public $title;
+    public $model, $modelId;
+
+
     public $per_page = 10;
     protected $paginationTheme = 'bootstrap';
-    public $header_view = 'livewire.admin.sesau.samu.table-header';
+    public $header_view = 'livewire.admin.sesau.samu.tipo.header';
     public $data = [];
+
     public function query()
     {
-        return Atendimento::query()->with('protocolo', 'solicitante', 'paciente');
+        return $this->model::query();
     }
 
     public function delete($data)
     {
         $this->data = $data;
     }
+
     public function columns()
     {
         return [
             Column::make('ID')->searchable()->sortable(),
-            Column::make('Solicitante','solicitante.nome')->searchable()->sortable(),
-            Column::make('Paciente','paciente.nome')->searchable()->sortable(),
-            Column::make('Data Atendimento','data_atendimento')->searchable()->sortable(),
-            Column::make('Data Solicitação','protocolo.data_solicitacao'),
+            Column::make('Nome', 'nome')->searchable()->sortable(),
             Column::make('Ação')->view('livewire.admin.sesau.samu.table-actions'),
         ];
     }
 
     public function destroy($id)
     {
-        $atendimento = Atendimento::find($id);
+        $atendimento = $this->model::find($id);
 
-        if($atendimento) {
+        if ($atendimento) {
             $atendimento->delete();
 
-            if($atendimento->protocolo) {
+            if ($atendimento->protocolo) {
                 $atendimento->protocolo->delete();
             }
 
@@ -57,4 +60,5 @@ class AtendimentoTableComponent extends TableComponent
     {
         $this->data = [];
     }
+
 }
