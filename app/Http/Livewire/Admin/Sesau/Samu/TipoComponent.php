@@ -8,12 +8,12 @@ use Livewire\Component;
 
 class TipoComponent extends Component
 {
-    public $title, $model, $form, $tipoId, $modelId, $modelEmitId;
+    public $title, $model, $form, $tipoId, $modelId, $modelEmitId, $type;
     public $nome, $status, $tipocomponent_id;
     public $isOpen = false;
     public $data = [];
     public $openForm = false;
-    protected $listeners = ['openFormTable'];
+    protected $listeners = ['openFormTable', 'editDeleteTipo'];
 
     public function mount($title, $model)
     {
@@ -33,28 +33,88 @@ class TipoComponent extends Component
         $this->openModal();
     }
 
-    public function store()
+    public function update()
     {
-
         $this->validate([
             'data.nome' => 'required',
         ]);
 
         try {
-            $this->model::Create($this->data);
+            $model = $this->model::findOrFail($this->data['id']);
+            $model->update($this->data);
+            session()->flash('message', 'Informação atualizada com sucesso!');
             $this->resetInputFields();
+        } catch (\Throwable $th) {
+            session()->flash('message', 'Não foi possível atualizar a informação.');
+        }
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'data.nome' => 'required',
+        ]);
+
+        try {
+            if (isset($this->data['id'])) {
+                $model = $this->model::findOrFail($this->data['id']);
+                $model->update($this->data);
+                session()->flash('message', 'Informação atualizada com sucesso!');
+            } else {
+                $model = $this->model::create($this->data);
+                session()->flash('message', 'Informação cadastrada com sucesso!');
+            }
+
+            $this->resetInputFields();
+
+        } catch (\Throwable $th) {
+            session()->flash('message', 'Não foi possível cadastrar/atualizar informação.');
+        }
+    }
+
+
+
+
+    public function openFormTable($modelId)
+    {
+        $this->type = null;
+        $this->data = [];
+        $this->modelEmitId = $modelId;
+        $this->openForm = !$this->openForm;
+
+    }
+
+    public function editDeleteTipo($model, $type, $modelId)
+    {
+        $this->modelEmitId = $modelId;
+        $this->openForm = !$this->openForm;
+        $this->data = $model;
+        $this->type = $type;
+
+
+    }
+
+    public function destroy()
+    {
+
+        try {
+            $item = $this->model::find($this->data['id']);
+
+            if ($item) {
+                $item->delete();
+                $this->resetInputFields();
+
+                session()->flash('message', 'Atendimento excluído com sucesso!');
+            } else {
+                session()->flash('message', 'Falha ao excluir o atendimento. Atendimento não encontrado.');
+            }
+
 
         } catch (\Throwable $th) {
             session()->flash('message',
                 'Não foi possível cadastrar/atualizar informação.');
         }
-    }
 
-
-    public function openFormTable( $modelId )
-    {
-        $this->modelEmitId = $modelId;
-        $this->openForm = !$this->openForm;
 
     }
 

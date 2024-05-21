@@ -33,28 +33,11 @@ class TipoFimTableComponent extends TableComponent
         return [
             Column::make('ID')->searchable()->sortable(),
             Column::make('Nome', 'nome')->searchable()->sortable(),
-            Column::make('Ação')->view('livewire.admin.sesau.samu.table-actions'),
+            Column::make('Ação')->view('livewire.admin.sesau.samu.tipo.actions'),
         ];
     }
 
-    public function destroy($id)
-    {
-        $atendimento = $this->model::find($id);
 
-        if ($atendimento) {
-            $atendimento->delete();
-
-            if ($atendimento->protocolo) {
-                $atendimento->protocolo->delete();
-            }
-
-            session()->flash('message', 'Atendimento excluído com sucesso!');
-        } else {
-            session()->flash('message', 'Falha ao excluir o atendimento. Atendimento não encontrado.');
-        }
-        $this->query();
-
-    }
 
     public function cancel()
     {

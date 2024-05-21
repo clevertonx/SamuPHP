@@ -8,7 +8,13 @@
         <h3>{{ $title }}</h3>
         @if ($openForm && $modelId == $modelEmitId)
             <div class="card-header">
+                <form wire:submit.prevent="{{ isset($data['id']) ? $type==='edit' ? 'update' : 'destroy' : 'store' }}">
                 @include($form)
+                    <div class="">
+                        <button type="submit" class="btn btn-{{ isset($data['id']) ? $type==='edit' ? 'primary' : 'danger' : 'primary' }}">{{ isset($data['id']) ? $type==='edit' ? 'ATUALIZAR' : 'DELETAR' : 'SALVAR' }}</button>
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal">CANCELAR</button>
+                    </div>
+                </form>
             </div>
         @endif
         <div class="mt-3">

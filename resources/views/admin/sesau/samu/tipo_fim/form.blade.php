@@ -1,4 +1,4 @@
-<form wire:submit.prevent="{{ $tipoId ? 'update' : 'store' }}">
+
     <div class="row">
         <div class="form-floating my-4 col-12">
             <input type="text" wire:model="data.nome" class="form-control"
@@ -14,6 +14,8 @@
                    class="form-check-input">
         </div>
     </div>
+
+
     {{-- fim status --}}
 
     @if ($errors->any())
@@ -26,8 +28,4 @@
         </div>
     @endif
 
-    <div class="">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancelar</button>
-    </div>
-</form>
+

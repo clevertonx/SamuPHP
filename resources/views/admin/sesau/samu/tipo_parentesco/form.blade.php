@@ -14,6 +14,8 @@
                    class="form-check-input">
         </div>
     </div>
+
+
     {{-- fim status --}}
 
     @if ($errors->any())
@@ -26,8 +28,4 @@
         </div>
     @endif
 
-    <div class="">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancelar</button>
-    </div>
 </form>
