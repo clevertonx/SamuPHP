@@ -15,10 +15,12 @@ class TipoComponent extends Component
     public $openForm = false;
     protected $listeners = ['openFormTable', 'editDeleteTipo'];
 
-    public function mount($title, $model)
+    public function mount($title, $model, $modelId, $form)
     {
         $this->title = $title;
         $this->model = $model;
+        $this->modelId = $modelId;
+        $this->form = $form;
     }
 
     private function resetInputFields()
@@ -35,9 +37,7 @@ class TipoComponent extends Component
 
     public function update()
     {
-        $this->validate([
-            'data.nome' => 'required',
-        ]);
+        $this->validate(app($this->model)->rules);
 
         try {
             $model = $this->model::findOrFail($this->data['id']);
@@ -51,9 +51,7 @@ class TipoComponent extends Component
 
     public function store()
     {
-        $this->validate([
-            'data.nome' => 'required',
-        ]);
+        $this->validate(app($this->model)->rules);
 
         try {
             if (isset($this->data['id'])) {
