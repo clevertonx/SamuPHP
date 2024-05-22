@@ -59,3 +59,5 @@ php artisan make:table Admin/Sesau/Samu/AtendimentoTableComponent
 php artisan make:livewire Admin/Sesau/Samu/AdicionarTipoComponent
 
 php artisan make:table Admin/Sesau/Samu/TipoFimTableComponent
+
+php artisan make:livewire Admin/Sesau/Samu/CardsComponent

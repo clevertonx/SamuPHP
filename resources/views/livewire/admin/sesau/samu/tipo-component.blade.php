@@ -11,8 +11,8 @@
                 <form wire:submit.prevent="{{ isset($data['id']) ? $type==='edit' ? 'update' : 'destroy' : 'store' }}">
                 @include($form)
                     <div class="">
-                        <button type="submit" class="btn btn-{{ isset($data['id']) ? $type==='edit' ? 'primary' : 'danger' : 'primary' }}">{{ isset($data['id']) ? $type==='edit' ? 'ATUALIZAR' : 'DELETAR' : 'SALVAR' }}</button>
-                        <button type="button" class="btn btn-secondary" wire:click="closeModal">CANCELAR</button>
+                        <button type="submit" class="btn btn-{{ isset($data['id']) ? $type==='edit' ? 'primary' : 'danger' : 'primary' }}">{{ isset($data['id']) ? $type==='edit' ? 'Atualizar' : 'Deletar' : 'Salvar' }}</button>
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal">Cancelar</button>
                     </div>
                 </form>
             </div>
