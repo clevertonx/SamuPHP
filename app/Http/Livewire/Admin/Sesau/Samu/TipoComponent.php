@@ -8,19 +8,21 @@ use Livewire\Component;
 
 class TipoComponent extends Component
 {
-    public $title, $model, $form, $tipoId, $modelId, $modelEmitId, $type;
+    public $title, $model, $form, $tipoId, $modelId, $modelEmitId, $type, $class;
     public $nome, $status, $tipocomponent_id;
     public $isOpen = false;
     public $data = [];
+
     public $openForm = false;
     protected $listeners = ['openFormTable', 'editDeleteTipo'];
 
-    public function mount($title, $model, $modelId, $form)
+    public function mount($title, $model, $modelId, $form, $class)
     {
         $this->title = $title;
         $this->model = $model;
         $this->modelId = $modelId;
         $this->form = $form;
+        $this->class = $class;
     }
 
     private function resetInputFields()

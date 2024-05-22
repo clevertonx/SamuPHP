@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-person icon"></i>
                     <h5 class="card-title">Pessoas</h5>
                     <p class="card-text">Adição de pessoas(solicitante/paciente)</p>
-                    <a href="/samu/adicionar" class="btn btn-dark">Adicionar Pessoas</a>
+                    <a href="/samu/pessoa" class="btn btn-dark">Adicionar Pessoas</a>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
 
 
 
-    <livewire:admin.sesau.samu.pessoa-component/>
+{{--    <livewire:admin.sesau.samu.pessoa-component/>--}}
     <livewire:admin.sesau.samu.atendimento-component/>
     {{--    <livewire:admin.sesau.samu.tabela-atendimento-component />--}}
     <livewire:admin.sesau.samu.atendimento-table-component/>

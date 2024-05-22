@@ -34,6 +34,10 @@ Route::get('/samu/adicionar', function () {
     return view('admin.sesau.samu.samu.adicionar');
 });
 
+Route::get('/samu/pessoa', function () {
+    return view('admin.sesau.samu.samu.pessoa');
+});
+
 Route::get('/clear-cache', function () {
     artisan::call('config:cache');
     artisan::call('cache:clear');

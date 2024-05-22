@@ -1,5 +1,5 @@
-<div class="card p-3 m-1 col-3 d-flex justify-content-center ">
-    <div class="card p-4 ">
+<div class="card p-3 m-1 col-{{ $class='12' ? $class : '3' }} d-flex justify-content-center ">
+
         @if (session()->has('message'))
             <div class="alert alert-success">{{ session('message') }}</div>
         @endif
@@ -17,9 +17,9 @@
                 </form>
             </div>
         @endif
-        <div class="mt-3">
-            <livewire:admin.sesau.samu.tipo-fim-table-component key="{{ Str::random(5) }}" title="{{$title}}" model="{{$model}}" modelId="{{ $modelId }}"/>
+        <div class="mt-3 ">
+            <livewire:admin.sesau.samu.tipo-table-component key="{{ Str::random(5) }}" title="{{$title}}" model="{{$model}}" modelId="{{ $modelId }}"/>
         </div>
 
-    </div>
+
 </div>

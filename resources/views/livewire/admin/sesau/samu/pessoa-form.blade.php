@@ -3,7 +3,6 @@
 
     {{-- @if ($isOpen) --}}
 
-    <div class="card p-4 mb-4">
         <div class="card p-2 mb-4 bg-light">
             <h5>Pessoa</h5>
         </div>
@@ -53,12 +52,11 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-auto">
-                        <button class="btn btn-primary mb-4" wire:click.defer="store">Adicionar Ficha</button>
+                        <button class="btn btn-success mb-4" wire:click.defer="store">Adicionar Ficha</button>
                     </div>
                 </div>
 
 
-            </div>
 
     </div>
 </div>
