@@ -21,5 +21,4 @@
             <livewire:admin.sesau.samu.tipo-table-component key="{{ Str::random(5) }}" title="{{$title}}" model="{{$model}}" modelId="{{ $modelId }}"/>
         </div>
 
-
 </div>

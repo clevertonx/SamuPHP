@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <i class="fa-solid fa-person icon"></i>
                     <h5 class="card-title">Pessoas</h5>
-                    <p class="card-text">Adição de pessoas(solicitante/paciente)</p>
+                    <p class="card-text">Adição de (solicitante/paciente)</p>
                     <a href="/samu/pessoa" class="btn btn-dark">Adicionar Pessoas</a>
                 </div>
             </div>
