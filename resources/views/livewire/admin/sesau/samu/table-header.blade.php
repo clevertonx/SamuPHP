@@ -21,3 +21,4 @@
     </div>
 </div>
 
+@include('livewire.admin.sesau.samu.modal-samu')

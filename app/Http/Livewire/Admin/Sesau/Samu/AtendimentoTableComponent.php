@@ -30,6 +30,7 @@ class AtendimentoTableComponent extends TableComponent
             Column::make('Paciente','paciente.nome')->searchable()->sortable(),
             Column::make('Data Atendimento','data_atendimento')->searchable()->sortable(),
             Column::make('Data Solicitação','protocolo.data_solicitacao'),
+            Column::make('Samu')->view('livewire.admin.sesau.samu.table-samu'),
             Column::make('Ação')->view('livewire.admin.sesau.samu.table-actions'),
         ];
     }

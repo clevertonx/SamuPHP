@@ -18,6 +18,8 @@ class AtendimentoComponent extends Component
     public $paciente;
     public $data = [];
     public $tipoSelecionado;
+    public $view_estudante_id, $view_estudante_nome, $view_estudante_email, $view_estudante_telefone;
+
 
     protected $listeners = ['postAdded'];
 
@@ -112,6 +114,13 @@ class AtendimentoComponent extends Component
             }
         }
     }
+
+    public function emitirInformacoesAtendimento($idAtendimento)
+    {
+        $atendimento = Atendimento::findOrFail($idAtendimento);
+        $this->emit('exibirInformacoesAtendimento', $atendimento);
+    }
+
 
 
 }
